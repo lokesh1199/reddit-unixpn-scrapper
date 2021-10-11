@@ -1,9 +1,10 @@
-import requests
-import praw
-from dotenv import load_dotenv
 import os
-from sys import argv
 from getopt import getopt
+from sys import argv
+
+import praw
+import requests
+from dotenv import load_dotenv
 
 
 def getKeys():
