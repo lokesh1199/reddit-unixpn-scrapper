@@ -25,9 +25,13 @@ def getPosts(DE, sort, limit):
     )
     unixpn = reddit.subreddit('unixporn')
 
-    for post in unixpn.search(DE, sort=sort, limit=limit):
-        if not post.is_self:
+    validExtensions = ['jpg', 'jpeg', 'png', 'gif']
+    for post in unixpn.search(DE, sort=sort, limit=100):
+        if post.url.split('.')[-1] in validExtensions:
+            limit -= 1
             yield (post.url, post.id)
+        if limit == 0:
+            break
 
 
 def downloadImage(url, fileName):
