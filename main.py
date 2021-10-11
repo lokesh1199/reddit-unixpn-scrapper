@@ -37,6 +37,10 @@ def getPosts(DE, sort, limit):
 def downloadImage(url, fileName):
     res = requests.get(url)
 
+    if os.path.exists(fileName):
+        print(fileName.split('/')[-1], 'already exists')
+        return
+
     with open(fileName, 'wb') as f:
         for chunk in res.iter_content():
             f.write(chunk)
