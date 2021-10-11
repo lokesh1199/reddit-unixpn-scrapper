@@ -55,7 +55,8 @@ def download(DE, sort='hot', limit=5):
 
 
 def printUsage():
-    print(f'Usage: {argv[0]} [options] <desktop environment>')
+    print('Usage:')
+    print(f'\t{argv[0]} [options] <desktop environment>')
     print('Options:')
     print('\t-s\t\t-> sort (new, hot, top)')
     print('\t-n\t\t-> number of images')
