@@ -16,7 +16,7 @@ def getKeys():
     return (clientID, clientSecret)
 
 
-def getPosts(DE, sort, limit):
+def getPosts(DE, sort, count):
     clientID, clientSecret = getKeys()
 
     reddit = praw.Reddit(
@@ -29,9 +29,9 @@ def getPosts(DE, sort, limit):
     validExtensions = ['jpg', 'jpeg', 'png', 'gif']
     for post in unixpn.search(DE, sort=sort, limit=100):
         if post.url.split('.')[-1] in validExtensions:
-            limit -= 1
+            count -= 1
             yield (post.url, post.id)
-        if limit == 0:
+        if count == 0:
             break
 
 
@@ -53,12 +53,12 @@ def createFolder(name):
         os.mkdir(name)
 
 
-def download(DE, sort='hot', limit=5):
+def download(DE, sort='hot', count=5):
     folderName = 'unixpn-images'
     createFolder(folderName)
 
     details = []
-    for post in getPosts(DE, sort, limit):
+    for post in getPosts(DE, sort, count):
         url, fileName = post
         ext = url.split('.')[-1]
         fileName = folderName + '/' + fileName + '.' + ext
@@ -85,7 +85,7 @@ def main():
             if key == '-s':
                 kwargs['sort'] = value
             elif key == '-n':
-                kwargs['limit'] = int(value)
+                kwargs['count'] = int(value)
         download(DE, **kwargs)
     else:
         printUsage()
