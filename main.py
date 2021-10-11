@@ -5,13 +5,11 @@ from sys import argv
 
 import praw
 import requests
-from dotenv import load_dotenv
 
 
 def getKeys():
-    load_dotenv()
-    clientID = os.getenv('clientID')
-    clientSecret = os.getenv('clientSecret')
+    clientID = 'fA4Vlqo4tHyzqVgg1UEr3A'
+    clientSecret = 'vd5eODvqcl8CdxLQhe9Lp5SvOVl4qQ'
 
     return (clientID, clientSecret)
 

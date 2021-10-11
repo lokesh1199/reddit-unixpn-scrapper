@@ -20,10 +20,3 @@ git clone https://github.com/lokesh1199/reddit-unixpn-scrapper
 cd reddit-unixpn-scrapper
 pip install -r requirements.txt
 ```
-
-## .env file
-
-```
-clientID = "your client id"
-clientSecret = "your client secret"
-```
