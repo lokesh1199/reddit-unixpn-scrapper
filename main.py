@@ -1,3 +1,4 @@
+import concurrent.futures
 import os
 from getopt import getopt
 from sys import argv
@@ -34,7 +35,8 @@ def getPosts(DE, sort, limit):
             break
 
 
-def downloadImage(url, fileName):
+def downloadImage(details):
+    url, fileName = details
     res = requests.get(url)
 
     if os.path.exists(fileName):
@@ -55,11 +57,15 @@ def download(DE, sort='hot', limit=5):
     folderName = 'unixpn-images'
     createFolder(folderName)
 
+    details = []
     for post in getPosts(DE, sort, limit):
         url, fileName = post
         ext = url.split('.')[-1]
         fileName = folderName + '/' + fileName + '.' + ext
-        downloadImage(url, fileName)
+        details.append((url, fileName))
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.map(downloadImage, details)
 
 
 def printUsage():
