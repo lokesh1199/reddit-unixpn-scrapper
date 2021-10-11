@@ -3,6 +3,7 @@ import praw
 from dotenv import load_dotenv
 import os
 from sys import argv
+from getopt import getopt
 
 
 def getKeys():
@@ -53,12 +54,23 @@ def download(DE, sort='hot', limit=5):
 
 
 def printUsage():
-    print(f'Usage: {argv[0]} <desktop environment>')
+    print(f'Usage: {argv[0]} [options] <desktop environment>')
+    print('Options:')
+    print('\t-s\t\t-> sort (new, hot, top)')
+    print('\t-n\t\t-> number of images')
 
 
 def main():
-    if len(argv) == 2:
-        download(argv[1])
+    if len(argv) >= 2:
+        opts, args = getopt(argv[1:], 's:n:', ['sort', 'count'])
+        DE = args[0]
+        kwargs = {}
+        for key, value in opts:
+            if key == '-s':
+                kwargs['sort'] = value
+            elif key == '-n':
+                kwargs['limit'] = int(value)
+        download(DE, **kwargs)
     else:
         printUsage()
 
