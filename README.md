@@ -6,6 +6,12 @@
 main.py [options] <desktop environment>
 ```
 
+### Example
+
+```
+main.py -s new -n 10 qtile
+```
+
 ## Options
 
 ```
