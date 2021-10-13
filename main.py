@@ -76,7 +76,7 @@ def printUsage():
 
 def main():
     if len(argv) >= 2:
-        opts, args = getopt(argv[1:], 's:n:', ['sort', 'count'])
+        opts, args = getopt(argv[1:], 's:n:')
         DE = args[0]
         kwargs = {}
         for key, value in opts:
