@@ -3,13 +3,13 @@
 ## Usage
 
 ```
-main.py [options] <desktop environment>
+python main.py [options] <desktop environment>
 ```
 
 ### Example
 
 ```
-main.py -s new -n 10 qtile
+python main.py -s new -n 10 qtile
 ```
 
 ## Options
