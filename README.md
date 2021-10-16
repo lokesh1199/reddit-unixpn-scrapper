@@ -6,7 +6,7 @@
 python main.py [options] <desktop environment>
 ```
 
-### Example
+### Examples
 
 ```
 python main.py -s new -n 10 qtile
